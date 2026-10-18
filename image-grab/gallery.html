@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>图提取 · 图片画廊</title>
+  <link rel="stylesheet" href="gallery.css" />
+</head>
+<body>
+  <!-- 顶部工具栏 -->
+  <header class="topbar">
+    <div class="topbar__info">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <path fill="currentColor" d="M12 2a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4L11 12.6V3a1 1 0 0 1 1-1Zm-7 16a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v1.2A1.8 1.8 0 0 1 18.2 22H5.8A1.8 1.8 0 0 1 4 20.2V19a1 1 0 0 1 1-1Z"/>
+        </svg>
+      </div>
+      <div class="titles">
+        <h1>图提取 <span class="badge">画廊</span></h1>
+        <p class="meta" id="meta">正在读取提取结果…</p>
+      </div>
+    </div>
+
+    <div class="topbar__actions">
+      <button type="button" class="btn btn--ghost" id="btnSelectAll">全选</button>
+      <button type="button" class="btn btn--ghost" id="btnInvert">反选</button>
+      <span class="counter" id="counter">已选 0 / 0</span>
+      <button type="button" class="btn btn--primary" id="btnDownload" disabled>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+          <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l2.3-2.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L11 13.6V4a1 1 0 0 1 1-1ZM5 18a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v1.2A1.8 1.8 0 0 1 18.2 22H5.8A1.8 1.8 0 0 1 4 20.2V19a1 1 0 0 1 1-1Z"/>
+        </svg>
+        下载选中
+      </button>
+    </div>
+  </header>
+
+  <!-- 空状态 / 使用说明 -->
+  <section class="empty" id="empty" hidden>
+    <div class="empty__icon" aria-hidden="true">
+      <svg viewBox="0 0 96 96" width="96" height="96">
+        <rect x="8" y="16" width="80" height="64" rx="12" fill="#eef2ff" stroke="#c7d2fe" stroke-width="3"/>
+        <circle cx="32" cy="38" r="7" fill="#a5b4fc"/>
+        <path d="M16 70l20-20 14 14 10-10 20 16" fill="none" stroke="#818cf8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>还没有提取任何图片</h2>
+    <p>打开淘宝、天猫、京东或拼多多商家版的商品详情页，点击页面右下角的「获取图片」按钮，图片就会出现在这里。</p>
+    <ol class="steps">
+      <li>在电商站点打开任意商品详情页</li>
+      <li>点击右下角悬浮的「获取图片」按钮</li>
+      <li>回到本页勾选需要的图片，点击「下载选中」</li>
+    </ol>
+  </section>
+
+  <!-- 图片网格 -->
+  <main class="content" id="content" hidden>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <!-- 底部下载进度 -->
+  <footer class="statusbar" id="statusbar">
+    <div class="statusbar__text" id="statusText">提示：勾选图片后点击右上角「下载选中」，文件将保存为 PNG 到浏览器默认下载目录。</div>
+    <div class="statusbar__bar" id="progressWrap" hidden>
+      <div class="progress"><div class="progress__fill" id="progressFill"></div></div>
+      <span class="progress__value" id="progressValue">0%</span>
+    </div>
+  </footer>
+
+  <script src="gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+/*
+ * content.css —— 注入页面的悬浮按钮与提示样式
+ * 所有类名统一以 ig- 前缀，避免与电商站点自身样式冲突
+ * 关键属性加 !important，防止被页面全局样式覆盖
+ */
+
+/* ---------- 右下角悬浮按钮 ---------- */
+.ig-fab {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 96px !important;
+  z-index: 2147483647 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #4f7cff 0%, #7b5cff 100%) !important;
+  color: #fff !important;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.02em !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 24px rgba(79, 124, 255, 0.35), 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease !important;
+  opacity: 1 !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  outline: none !important;
+}
+
+.ig-fab:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(79, 124, 255, 0.42), 0 3px 8px rgba(0, 0, 0, 0.16) !important;
+}
+
+.ig-fab:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+.ig-fab:focus-visible {
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.35), 0 8px 24px rgba(79, 124, 255, 0.35) !important;
+}
+
+.ig-fab__icon {
+  flex: 0 0 auto !important;
+  display: block !important;
+}
+
+/* 扫描中：图标旋转 */
+.ig-fab--loading {
+  cursor: progress !important;
+  opacity: 0.9 !important;
+}
+
+.ig-fab--loading .ig-fab__icon {
+  animation: ig-spin 0.9s linear infinite !important;
+}
+
+/* 非商品详情页隐藏 */
+.ig-fab--hidden {
+  display: none !important;
+}
+
+@keyframes ig-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- 轻提示 ---------- */
+.ig-toast {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 168px !important;
+  z-index: 2147483647 !important;
+  max-width: 320px !important;
+  padding: 10px 16px !important;
+  border-radius: 10px !important;
+  background: rgba(28, 32, 44, 0.92) !important;
+  color: #fff !important;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24) !important;
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  pointer-events: none !important;
+  transition: opacity 0.24s ease, transform 0.24s ease !important;
+}
+
+.ig-toast--show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.ig-toast[data-type="success"] { background: rgba(22, 133, 87, 0.95) !important; }
+.ig-toast[data-type="warn"]    { background: rgba(191, 116, 8, 0.95) !important; }
+.ig-toast[data-type="error"]   { background: rgba(196, 50, 50, 0.95) !important; }
+
+/* ---------- 移动端适配 ---------- */
+@media (max-width: 768px) {
+  .ig-fab {
+    right: 16px !important;
+    bottom: 80px !important;
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+  }
+  .ig-toast {
+    right: 16px !important;
+    left: 16px !important;
+    max-width: none !important;
+    bottom: 144px !important;
+  }
+}
